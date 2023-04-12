@@ -26,3 +26,21 @@ if(process.env.NODE_ENV == 'development') {
     } else {
     console.log('production mode');
     }
+
+//     app.get('/', (req, res) => {
+//   fs.readFile(path.join(__dirname, 'package.json'), (err, content) => {
+//     if (err) {
+//       console.error(err);
+//     }
+//     res.send('<h1>Json text:</h1>' + content);
+//   });
+// });
+
+app.get('/', async (req, res) => {
+    try {
+        const content = await promises.readFile(path.join(__dirname, 'package.json'));
+        res.send('<h1>Json text:</h1>' + content);
+    } catch (err) {
+      console.error(err);
+    }
+  });
